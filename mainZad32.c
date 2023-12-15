@@ -1,6 +1,3 @@
-//TODO: Zmień fonty
-
-
 //*****************************************************************************
 // hello.c - Simple hello world example.
 //
@@ -50,7 +47,7 @@ const unsigned char TI_logo[(16*2)+5] = {IMAGE_FMT_1BPP_UNCOMP, 16,0, 16,0,0x0f,
 int main(void)
 {
 tContext sContext;
-tRectangle sRect;
+
 
 //
 // Enable lazy stacking for interrupt handlers. This allows floating-point
@@ -92,100 +89,30 @@ GrContextInit(&sContext, &g_sILI9341_240x320x262K);
 
 //X -> 320, Y -> 240 
 
-
 //TL
-sRect.i16XMin = 30;
-sRect.i16YMin = 20;
-sRect.i16XMax = 150;
-sRect.i16YMax = 100;
-
-GrContextForegroundSet(&sContext, 1);
-GrRectFill(&sContext, &sRect);
-ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-GrContextForegroundSet(&sContext, ClrRed);
-GrRectFill(&sContext, &sRect);
-
-
-//TR
-sRect.i16XMin = 320-150; //170
-sRect.i16YMin = 20;
-sRect.i16XMax = 320-30; //290
-sRect.i16YMax = 100;
-
-GrContextForegroundSet(&sContext, 1);
-GrRectFill(&sContext, &sRect);
-ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-GrContextForegroundSet(&sContext, ClrGreen);
-GrRectFill(&sContext, &sRect);
-
-
-//BL
-sRect.i16XMin = 30;
-sRect.i16YMin = 240-100; //140
-sRect.i16XMax = 150;
-sRect.i16YMax = 240-20; //220
-
-GrContextForegroundSet(&sContext, 1);
-GrRectFill(&sContext, &sRect);
-ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-GrContextForegroundSet(&sContext, ClrBlue);
-GrRectFill(&sContext, &sRect);
-
-
-//BR
-sRect.i16XMin = 320-150;
-sRect.i16YMin = 240-100;
-sRect.i16XMax = 320-30;
-sRect.i16YMax = 240-20;
-
-GrContextForegroundSet(&sContext, 1);
-GrRectFill(&sContext, &sRect);
-ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-GrContextForegroundSet(&sContext, ClrYellow);
-GrRectFill(&sContext, &sRect);
+GrContextForegroundSet(&sContext, ClrBrown);
+GrCircleFill(&sContext, 160, 100, 80);
 
 GrFlush(&sContext);
 
 GrContextForegroundSet(&sContext, ClrWhite);
 GrContextFontSet(&sContext, g_psFontCm20b);
-GrStringDrawCentered(&sContext, "POLE A", -1,
-150-(150-30)/2, 100-(100-20)/2, 0);
-
-
-GrContextForegroundSet(&sContext, 1);
-GrRectFill(&sContext, &sRect);
-ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-GrContextForegroundSet(&sContext, ClrYellow);
-GrRectFill(&sContext, &sRect);
-
-GrContextForegroundSet(&sContext, ClrBlack);
-GrContextFontSet(&sContext, g_psFontCm20b);
-GrStringDrawCentered(&sContext, "POLE B", -1,
-290-(290-170)/2, 100-(100-20)/2, 0);
-
-
-GrContextForegroundSet(&sContext, 1);
-GrRectFill(&sContext, &sRect);
-ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-GrContextForegroundSet(&sContext, ClrYellow);
-GrRectFill(&sContext, &sRect);
-
-GrContextForegroundSet(&sContext, ClrYellow);
-GrContextFontSet(&sContext, g_psFontCm20b);
-GrStringDrawCentered(&sContext, "POLE C", -1,
-150-(150-30)/2, 220-(220-140)/2, 0);
-
-
-
-GrContextForegroundSet(&sContext, 1);
-GrRectFill(&sContext, &sRect);
-ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-GrContextForegroundSet(&sContext, ClrYellow);
-GrRectFill(&sContext, &sRect);
+GrStringDrawCentered(&sContext, "Napis 1", -1,
+90, 200, 0);
 
 GrContextForegroundSet(&sContext, ClrGreen);
 GrContextFontSet(&sContext, g_psFontCm20b);
-GrStringDrawCentered(&sContext, "POLE D", -1,
-290-(290-170)/2, 220-(220-140)/2, 0);
+GrStringDrawCentered(&sContext, "Napis 2", -1,
+320-90, 200, 0);
+
+int i = 228;
+GrContextForegroundSet(&sContext, ClrYellow);
+while(i>=91){
+    GrLineDraw(&sContext, 160, 21, i, 140);
+    i--;
+}
+
+
+
 
 }
