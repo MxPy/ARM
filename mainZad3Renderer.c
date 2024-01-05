@@ -37,10 +37,10 @@ void drawTriangle(tContext *pContext,Triangle* tr1, uint32_t color){
     GrContextForegroundSet(&pContext, color);
     float x = (float)tr1->RightX;
     float y = (float)tr1->RightY;
-    float yJump = (float)(tr1->RightY-tr1->LeftY)/(tr1->RightX-tr1->LeftX)/4;
+    float yJump = (float)(tr1->RightY-tr1->LeftY)/(tr1->RightX-tr1->LeftX)/3;
     while(x>=tr1->LeftX){
         GrLineDraw(&pContext, tr1->TopX, tr1->TopY, x, y);
-        x-=0.25;
+        x-=0.33;
         y-=yJump;
     }
 }
