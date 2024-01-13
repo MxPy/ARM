@@ -164,9 +164,13 @@ matProj.m[3][2] = (-fFar * fNear) / (fFar - fNear);
 matProj.m[2][3] = 1.0f;
 matProj.m[3][3] = 0.0f;
 
-float fElapsedTime = 1;
+float fElapsedTime = 0.1;
+
+int fps = 10000000;
+int fpsI = 0;
 while(true){
-    _clear_screen(&sContext);
+    if(fpsI == fps){
+        _clear_screen(&sContext);
     mat4x4 matRotZ, matRotX;
 	fTheta += 1.0f * fElapsedTime;
 
@@ -228,9 +232,10 @@ while(true){
 				triProjected.p[2].x, triProjected.p[2].y);
 
 		}
+        fpsI = 0;
+    }
+    fpsI++;
 
-
-    ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
 }
 
 
